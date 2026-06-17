@@ -28,7 +28,7 @@ export default function BlogPage() {
           />
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {blogPosts.map((post) => (
-              <article key={post.title} className="group rounded-[8px] border border-ivory/10 bg-ivory/[0.035] p-6 transition hover:border-champagne/40">
+              <article key={post.title} className="group rounded-[8px] border border-champagne/18 bg-white/88 p-6 shadow-[0_18px_50px_rgba(92,68,25,0.08)] transition hover:border-champagne/40 hover:bg-white">
                 <div className="flex items-center justify-between gap-4">
                   <p className="text-xs font-extrabold uppercase text-champagne">{post.tag}</p>
                   <ArrowUpRight aria-hidden="true" size={18} className="text-ivory/40 transition group-hover:text-champagne" />

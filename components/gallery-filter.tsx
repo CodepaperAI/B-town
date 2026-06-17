@@ -40,7 +40,7 @@ export function GalleryFilter({ limit }: { limit?: number }) {
               "focus-ring min-h-11 shrink-0 rounded-[6px] border px-4 text-sm font-bold transition",
               active === category
                 ? "border-champagne bg-champagne text-[#17130d]"
-                : "border-ivory/12 bg-ivory/[0.035] text-ivory/72 hover:border-champagne/40 hover:text-ivory"
+                : "border-ivory/12 bg-white/76 text-ivory/72 hover:border-champagne/40 hover:bg-white hover:text-ivory"
             )}
           >
             {category}
@@ -53,7 +53,7 @@ export function GalleryFilter({ limit }: { limit?: number }) {
           <article
             key={`${item.title}-${item.category}`}
             className={cn(
-              "group relative overflow-hidden rounded-[8px] border border-ivory/10 bg-ivory/[0.035]",
+              "group relative overflow-hidden rounded-[8px] border border-champagne/18 bg-white shadow-[0_18px_48px_rgba(92,68,25,0.08)]",
               index === 0 && !limit ? "lg:col-span-2" : ""
             )}
           >
@@ -65,10 +65,10 @@ export function GalleryFilter({ limit }: { limit?: number }) {
                 sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                 className="object-cover transition duration-500 group-hover:scale-[1.04]"
               />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(31,26,18,0.04),rgba(31,26,18,0.62))]" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(31,26,18,0.02),rgba(31,26,18,0.7))]" />
               <div className="absolute bottom-4 left-4 right-4">
                 <p className="text-xs font-extrabold uppercase text-champagne">{item.category}</p>
-                <h3 className="mt-1 font-display text-3xl font-bold leading-none text-ivory">
+                <h3 className="mt-1 font-display text-3xl font-bold leading-none text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)]">
                   {item.title}
                 </h3>
               </div>

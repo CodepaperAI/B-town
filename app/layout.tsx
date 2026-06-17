@@ -46,9 +46,9 @@ export const metadata: Metadata = {
     siteName: "B-Town Entertainment",
     images: [
       {
-        url: "https://images.pexels.com/photos/26558729/pexels-photo-26558729.jpeg?auto=compress&cs=tinysrgb&w=1600",
-        width: 1600,
-        height: 1067,
+        url: "/images/hero-reception.webp",
+        width: 1920,
+        height: 1280,
         alt: "South Asian wedding reception dance floor"
       }
     ],

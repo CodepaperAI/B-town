@@ -10,7 +10,7 @@ export function ServiceCard({ service }: { service: Service }) {
   return (
     <article
       id={service.slug}
-      className="service-card group overflow-hidden rounded-[8px] border border-ivory/10 bg-ivory/[0.035] transition duration-300 hover:border-champagne/50 hover:bg-ivory/[0.06]"
+      className="service-card group overflow-hidden rounded-[8px] border border-champagne/20 bg-white/88 shadow-[0_18px_50px_rgba(92,68,25,0.08)] transition duration-300 hover:border-champagne/50 hover:bg-white"
     >
       <div className="service-card-media relative aspect-[1.25] overflow-hidden">
         <Image
@@ -20,7 +20,7 @@ export function ServiceCard({ service }: { service: Service }) {
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="service-card-image object-cover transition duration-500 group-hover:scale-[1.04]"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0),rgba(5,5,5,0.76))]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(31,26,18,0.02),rgba(31,26,18,0.58))]" />
         <div className="service-card-icon absolute bottom-4 left-4 grid size-11 place-items-center rounded-[6px] bg-champagne text-[#17130d]">
           <Icon aria-hidden="true" size={22} />
         </div>

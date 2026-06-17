@@ -23,7 +23,7 @@ export default function AboutPage() {
       />
       <section className="section-pad">
         <div className="container-shell grid gap-10 lg:grid-cols-[0.9fr_1fr] lg:items-center">
-          <div className="relative aspect-[0.9] overflow-hidden rounded-[8px] border border-ivory/10">
+          <div className="relative aspect-[0.9] overflow-hidden rounded-[8px] border border-champagne/20 shadow-[0_18px_50px_rgba(92,68,25,0.1)]">
             <Image src={images.djAlt} alt="B-Town Entertainment production setup" fill sizes="50vw" className="object-cover" />
           </div>
           <div>
@@ -34,7 +34,7 @@ export default function AboutPage() {
             />
             <div className="mt-8 grid gap-3">
               {serviceHighlights.map((highlight) => (
-                <div key={highlight} className="flex gap-3 rounded-[6px] border border-ivory/10 bg-ivory/[0.035] p-4 text-sm leading-7 text-ivory/70">
+                <div key={highlight} className="flex gap-3 rounded-[6px] border border-champagne/18 bg-white/82 p-4 text-sm leading-7 text-ivory/70 shadow-[0_12px_34px_rgba(92,68,25,0.06)]">
                   <BadgeCheck aria-hidden="true" className="mt-1 shrink-0 text-champagne" size={18} />
                   {highlight}
                 </div>

@@ -29,19 +29,19 @@ export default function ContactPage() {
               text="The contact area is designed around mobile-first lead capture with direct call and WhatsApp options."
             />
             <div className="mt-8 grid gap-3">
-              <a href={`tel:${brand.phoneHref}`} className="focus-ring flex min-h-14 items-center gap-4 rounded-[6px] border border-ivory/10 bg-ivory/[0.035] px-4 text-ivory/76 transition hover:border-champagne/40 hover:text-ivory">
+              <a href={`tel:${brand.phoneHref}`} className="focus-ring flex min-h-14 items-center gap-4 rounded-[6px] border border-champagne/18 bg-white/82 px-4 text-ivory/76 shadow-[0_12px_34px_rgba(92,68,25,0.06)] transition hover:border-champagne/40 hover:bg-white hover:text-ivory">
                 <Phone aria-hidden="true" className="text-champagne" size={20} />
                 {brand.phoneLabel}
               </a>
-              <a href={brand.whatsappHref} className="focus-ring flex min-h-14 items-center gap-4 rounded-[6px] border border-ivory/10 bg-ivory/[0.035] px-4 text-ivory/76 transition hover:border-peacock hover:text-ivory">
+              <a href={brand.whatsappHref} className="focus-ring flex min-h-14 items-center gap-4 rounded-[6px] border border-champagne/18 bg-white/82 px-4 text-ivory/76 shadow-[0_12px_34px_rgba(92,68,25,0.06)] transition hover:border-peacock hover:bg-white hover:text-ivory">
                 <MessageCircle aria-hidden="true" className="text-peacock" size={20} />
                 WhatsApp direct inquiry
               </a>
-              <a href={`mailto:${brand.email}`} className="focus-ring flex min-h-14 items-center gap-4 rounded-[6px] border border-ivory/10 bg-ivory/[0.035] px-4 text-ivory/76 transition hover:border-champagne/40 hover:text-ivory">
+              <a href={`mailto:${brand.email}`} className="focus-ring flex min-h-14 items-center gap-4 rounded-[6px] border border-champagne/18 bg-white/82 px-4 text-ivory/76 shadow-[0_12px_34px_rgba(92,68,25,0.06)] transition hover:border-champagne/40 hover:bg-white hover:text-ivory">
                 <Mail aria-hidden="true" className="text-champagne" size={20} />
                 {brand.email}
               </a>
-              <div className="flex min-h-14 items-start gap-4 rounded-[6px] border border-ivory/10 bg-ivory/[0.035] px-4 py-4 text-ivory/76">
+              <div className="flex min-h-14 items-start gap-4 rounded-[6px] border border-champagne/18 bg-white/82 px-4 py-4 text-ivory/76 shadow-[0_12px_34px_rgba(92,68,25,0.06)]">
                 <MapPin aria-hidden="true" className="mt-0.5 text-champagne" size={20} />
                 <span>Brampton-based service across {venues.join(", ")} and the GTA.</span>
               </div>

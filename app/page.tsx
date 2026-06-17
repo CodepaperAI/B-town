@@ -201,12 +201,12 @@ export default function HomePage() {
           />
           <div className="grid grid-cols-3 gap-3">
             {[images.dj, images.sparklers, images.reception].map((image, index) => (
-              <div key={image} className="relative aspect-[9/16] overflow-hidden rounded-[8px] border border-ivory/10">
+              <div key={image} className="relative aspect-[9/16] overflow-hidden rounded-[8px] border border-champagne/18 shadow-[0_18px_48px_rgba(92,68,25,0.1)]">
                 <Image src={image} alt="Vertical event reel preview" fill sizes="30vw" className="object-cover" />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,250,240,0.02),rgba(31,26,18,0.52))]" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(31,26,18,0.02),rgba(31,26,18,0.66))]" />
                 <div className="absolute bottom-3 left-3 right-3">
                   <p className="text-[11px] font-extrabold uppercase text-champagne">Reel 0{index + 1}</p>
-                  <p className="mt-1 text-sm font-bold leading-tight text-ivory">Event highlight</p>
+                  <p className="mt-1 text-sm font-bold leading-tight text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)]">Event highlight</p>
                 </div>
               </div>
             ))}

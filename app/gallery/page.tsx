@@ -42,13 +42,13 @@ export default function GalleryPage() {
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
-            <div className="relative aspect-[0.92] overflow-hidden rounded-[8px] border border-ivory/10">
+            <div className="relative aspect-[0.92] overflow-hidden rounded-[8px] border border-champagne/18 shadow-[0_18px_48px_rgba(92,68,25,0.1)]">
               <Image src={images.corporate} alt="Venue before event styling" fill sizes="50vw" className="object-cover grayscale" />
-              <span className="absolute left-3 top-3 rounded-[4px] bg-ink/80 px-2 py-1 text-xs font-extrabold uppercase text-ivory">
+              <span className="absolute left-3 top-3 rounded-[4px] bg-white/88 px-2 py-1 text-xs font-extrabold uppercase text-ivory shadow-[0_8px_18px_rgba(0,0,0,0.12)]">
                 Before
               </span>
             </div>
-            <div className="relative aspect-[0.92] overflow-hidden rounded-[8px] border border-champagne/35">
+            <div className="relative aspect-[0.92] overflow-hidden rounded-[8px] border border-champagne/35 shadow-[0_18px_48px_rgba(92,68,25,0.1)]">
               <Image src={images.decor} alt="Venue after luxury wedding styling" fill sizes="50vw" className="object-cover" />
               <span className="absolute left-3 top-3 rounded-[4px] bg-champagne px-2 py-1 text-xs font-extrabold uppercase text-[#17130d]">
                 After

@@ -6,7 +6,7 @@ type Package = (typeof packages)[number];
 
 export function PackageCard({ item, featured = false }: { item: Package; featured?: boolean }) {
   return (
-    <article className="rounded-[8px] border border-ivory/10 bg-ivory/[0.035] p-5 transition duration-300 hover:border-champagne/50 hover:bg-ivory/[0.06]">
+    <article className="rounded-[8px] border border-champagne/20 bg-white/88 p-5 shadow-[0_18px_50px_rgba(92,68,25,0.08)] transition duration-300 hover:border-champagne/50 hover:bg-white">
       <div className="flex items-center justify-between gap-3">
         <p className="text-xs font-extrabold uppercase text-champagne">{item.eyebrow}</p>
         {featured ? (

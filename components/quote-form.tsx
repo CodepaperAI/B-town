@@ -36,6 +36,8 @@ const initialState: FormState = {
 export function QuoteForm({ compact = false }: { compact?: boolean }) {
   const [form, setForm] = useState<FormState>(initialState);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const emailHref = useMemo(() => {
@@ -87,7 +89,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
     });
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const nextErrors: Record<string, string> = {};
 
@@ -102,21 +104,51 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
     }
 
     setErrors(nextErrors);
-    if (Object.keys(nextErrors).length === 0) {
+    if (Object.keys(nextErrors).length > 0) return;
+
+    setSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const response = await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form)
+      });
+      const data = (await response.json().catch(() => ({}))) as {
+        ok?: boolean;
+        error?: string;
+      };
+
+      if (!response.ok || !data.ok) {
+        setSubmitError(data.error || "We couldn't send your request. Please try email or WhatsApp below.");
+        setSubmitted(true);
+        return;
+      }
+
       setSubmitted(true);
+    } catch {
+      setSubmitError("Network error. Please try email or WhatsApp below.");
+      setSubmitted(true);
+    } finally {
+      setSubmitting(false);
     }
   }
 
   if (submitted) {
+    const sent = !submitError;
     return (
       <div className="confirmation-pop rounded-[8px] border border-champagne/35 bg-ink/95 p-5 shadow-glow">
-        <p className="text-xs font-extrabold uppercase text-champagne">Inquiry ready</p>
+        <p className="text-xs font-extrabold uppercase text-champagne">
+          {sent ? "Inquiry sent" : "Inquiry ready"}
+        </p>
         <h2 className="mt-3 font-display text-4xl font-bold leading-none text-ivory">
-          Send your event details.
+          {sent ? "Thanks — we got your details." : "Send your event details."}
         </h2>
         <p className="mt-4 text-sm leading-7 text-ivory/68">
-          Your quote details are prepared for B-Town Entertainment. Send by email or
-          continue on WhatsApp for the fastest response.
+          {sent
+            ? "B-Town Entertainment will reply within a few hours. For the fastest response, continue on WhatsApp."
+            : submitError || "Your quote details are prepared for B-Town Entertainment. Send by email or continue on WhatsApp for the fastest response."}
         </p>
         <div className="mt-5 grid gap-3 sm:grid-cols-2">
           <a
@@ -137,7 +169,10 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
         <button
           type="button"
           className="focus-ring mt-4 text-sm font-bold text-ivory/64 underline decoration-champagne/50 underline-offset-4 hover:text-ivory"
-          onClick={() => setSubmitted(false)}
+          onClick={() => {
+            setSubmitted(false);
+            setSubmitError(null);
+          }}
         >
           Edit request
         </button>
@@ -302,9 +337,10 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
 
       <button
         type="submit"
-        className="focus-ring mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[6px] bg-champagne px-5 text-sm font-extrabold uppercase text-[#17130d] transition hover:bg-champagne-deep hover:text-white"
+        disabled={submitting}
+        className="focus-ring mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[6px] bg-champagne px-5 text-sm font-extrabold uppercase text-[#17130d] transition hover:bg-champagne-deep hover:text-white disabled:cursor-not-allowed disabled:opacity-60"
       >
-        Get Instant Quote
+        {submitting ? "Sending..." : "Get Instant Quote"}
       </button>
     </form>
   );

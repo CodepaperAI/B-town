@@ -19,7 +19,7 @@ export const brand = {
   phoneHref: "+16477000000",
   whatsappHref:
     "https://wa.me/16477000000?text=Hi%20B-Town%20Entertainment%2C%20I%27d%20like%20a%20quote%20for%20my%20event.",
-  email: "hello@btownentertainment.ca",
+  email: "hello@btownent.ca",
   instagram: "https://www.instagram.com/",
   tiktok: "https://www.tiktok.com/"
 };
@@ -34,28 +34,21 @@ export const navItems = [
   { label: "Contact", href: "/contact" }
 ];
 
-const pexels = (id: string, width = 1600) =>
-  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${width}`;
-
 export const images = {
-  hero: pexels("26558729", 2200),
-  dj: pexels("15349818"),
-  djAlt: pexels("14925306"),
-  decor: pexels("31307953"),
-  decorAlt: pexels("31307956"),
-  dhol: pexels("30664564"),
-  dholAlt: pexels("32652559"),
-  reception: pexels("33088122"),
-  sparklers: pexels("34479850"),
-  weddingStage: pexels("19780151"),
-  corporate:
-    "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1600&q=80",
-  media:
-    "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1600&q=80",
-  birthday:
-    "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1600&q=80",
-  backyard:
-    "https://images.unsplash.com/photo-1505236858219-8359eb29e329?auto=format&fit=crop&w=1600&q=80"
+  hero: "/images/hero-reception.webp",
+  dj: "/images/dj-booth.webp",
+  djAlt: "/images/dance-floor.webp",
+  decor: "/images/luxury-decor.webp",
+  decorAlt: "/images/luxury-decor.webp",
+  dhol: "/images/dhol-entry.webp",
+  dholAlt: "/images/maiyan-color.webp",
+  reception: "/images/hero-reception.webp",
+  sparklers: "/images/clouds-sparklers.webp",
+  weddingStage: "/images/wedding-stage.webp",
+  corporate: "/images/corporate-av.webp",
+  media: "/images/media-camera.webp",
+  birthday: "/images/birthday.webp",
+  backyard: "/images/private-party.webp"
 };
 
 export const serviceHighlights = [

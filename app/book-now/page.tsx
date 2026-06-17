@@ -30,7 +30,7 @@ export default function BookNowPage() {
             />
             <div className="mt-8 grid gap-3">
               {packages.map((item) => (
-                <div key={item.name} className="rounded-[6px] border border-ivory/10 bg-ivory/[0.035] p-4">
+                <div key={item.name} className="rounded-[6px] border border-champagne/18 bg-white/82 p-4 shadow-[0_12px_34px_rgba(92,68,25,0.06)]">
                   <p className="font-bold text-ivory">{item.name}</p>
                   <p className="mt-1 text-sm text-ivory/56">{item.ideal}</p>
                 </div>

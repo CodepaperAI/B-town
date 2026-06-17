@@ -22,8 +22,7 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at 18% 0%, rgba(185, 138, 45, 0.13), transparent 34%),
-    linear-gradient(180deg, #fffaf0 0%, #f8f0df 48%, #fffaf0 100%),
+    linear-gradient(180deg, #fffdf8 0%, #f8f0df 48%, #fffaf0 100%),
     var(--site-bg);
   color: var(--site-fg);
   font-family: var(--font-body), Helvetica, Arial, sans-serif;
@@ -150,7 +149,7 @@ main article {
 }
 
 main article.motion-visible:hover {
-  box-shadow: 0 22px 56px rgba(92, 68, 25, 0.14);
+  box-shadow: 0 24px 58px rgba(92, 68, 25, 0.16);
   transform: translate3d(0, -4px, 0);
 }
 
