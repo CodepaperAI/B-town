@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 import { listBlogs } from "@/lib/upliftai";
+import { services } from "@/lib/content";
+import { btownLocations } from "@/lib/seo";
 
 const SITE_URL = "https://btownent.ca";
 
@@ -29,6 +31,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === "" ? 1 : 0.8
   }));
 
+  const serviceEntries: MetadataRoute.Sitemap = services.map((s) => ({
+    url: `${SITE_URL}/services/${s.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.9,
+  }));
+
+  const serviceCityEntries: MetadataRoute.Sitemap = services.flatMap((s) =>
+    btownLocations.map((l) => ({
+      url: `${SITE_URL}/services/${s.slug}/${l.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+  );
+
   const blogEntries: MetadataRoute.Sitemap = blogs.map((blog) => {
     const updated = blog.updatedAt || blog.publishDate;
     return {
@@ -39,5 +57,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
-  return [...staticEntries, ...blogEntries];
+  return [...staticEntries, ...serviceEntries, ...serviceCityEntries, ...blogEntries];
 }
