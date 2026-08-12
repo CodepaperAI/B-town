@@ -18,7 +18,7 @@ type QuotePayload = {
   selectedServices?: string[];
 };
 
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 const fallbackFromEmail = "hello@btownent.ca";
 
 function asText(value: unknown) {
