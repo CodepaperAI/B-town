@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "B-Town Entertainment",
     description:
       "Luxury entertainment, décor, media, dhol, and production for Brampton and GTA celebrations.",
-    url: "https://btownentertainment.ca",
+    url: "https://btownent.ca",
     siteName: "B-Town Entertainment",
     images: [
       {
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     locale: "en_CA",
     type: "website"
   },
-  metadataBase: new URL("https://btownentertainment.ca")
+  metadataBase: new URL("https://btownent.ca")
 };
 
 export default function RootLayout({

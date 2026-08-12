@@ -33,6 +33,8 @@ const initialState: FormState = {
   selectedServices: []
 };
 
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export function QuoteForm({ compact = false }: { compact?: boolean }) {
   const [form, setForm] = useState<FormState>(initialState);
   const [submitted, setSubmitted] = useState(false);
@@ -65,7 +67,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
     const text = encodeURIComponent(
       `Hi B-Town Entertainment, I'd like a quote.\nEvent: ${form.eventType}\nDate: ${form.eventDate}\nCity/Venue: ${form.city}\nGuests: ${form.guests}\nServices: ${form.selectedServices.join(", ")}`
     );
-    return `https://wa.me/16477000000?text=${text}`;
+    return `https://wa.me/16479155327?text=${text}`;
   }, [form]);
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
@@ -99,6 +101,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
     if (!form.name.trim()) nextErrors.name = "Add your name.";
     if (!form.phone.trim()) nextErrors.phone = "Add your phone number.";
     if (!form.email.trim()) nextErrors.email = "Add your email.";
+    else if (!emailPattern.test(form.email.trim())) nextErrors.email = "Enter a valid email address.";
     if (form.selectedServices.length === 0) {
       nextErrors.selectedServices = "Select at least one service.";
     }
@@ -143,7 +146,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
           {sent ? "Inquiry sent" : "Inquiry ready"}
         </p>
         <h2 className="mt-3 font-display text-4xl font-bold leading-none text-ivory">
-          {sent ? "Thanks — we got your details." : "Send your event details."}
+          {sent ? "Thanks - we got your details." : "Send your event details."}
         </h2>
         <p className="mt-4 text-sm leading-7 text-ivory/68">
           {sent
@@ -319,7 +322,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
             value={form.notes}
             onChange={(event) => update("notes", event.target.value)}
             rows={4}
-            placeholder="Tell us about entrances, music, effects, décor, family requests, or venue details."
+            placeholder="Tell us about entrances, music, effects, decor, family requests, or venue details."
             className="form-control resize-y"
           />
         </Field>

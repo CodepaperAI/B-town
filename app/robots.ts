@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/"
     },
-    sitemap: "https://btownentertainment.ca/sitemap.xml"
+    sitemap: "https://btownent.ca/sitemap.xml"
   };
 }

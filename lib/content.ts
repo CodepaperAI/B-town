@@ -15,10 +15,10 @@ export const brand = {
   name: "B-Town Entertainment",
   city: "Brampton",
   region: "Greater Toronto Area",
-  phoneLabel: "+1 (647) 700-0000",
-  phoneHref: "+16477000000",
+  phoneLabel: "+1 (647) 915-5327",
+  phoneHref: "+16479155327",
   whatsappHref:
-    "https://wa.me/16477000000?text=Hi%20B-Town%20Entertainment%2C%20I%27d%20like%20a%20quote%20for%20my%20event.",
+    "https://wa.me/16479155327?text=Hi%20B-Town%20Entertainment%2C%20I%27d%20like%20a%20quote%20for%20my%20event.",
   email: "hello@btownent.ca",
   instagram: "https://www.instagram.com/",
   tiktok: "https://www.tiktok.com/"
