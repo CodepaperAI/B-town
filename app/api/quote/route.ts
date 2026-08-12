@@ -19,7 +19,7 @@ type QuotePayload = {
 };
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const fallbackFromEmail = "B-Town Entertainment <hello@btownent.ca>";
+const fallbackFromEmail = "hello@btownent.ca";
 
 function asText(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
@@ -42,19 +42,15 @@ function normalizeFromEmail(value: string) {
 
   const displayMatch = cleaned.match(/^(.+?)\s*<([^<>]+)>$/);
   if (displayMatch) {
-    const displayName = stripWrappingQuotes(displayMatch[1]) || "B-Town Entertainment";
     const email = displayMatch[2].trim();
     if (emailPattern.test(email)) {
-      return `${displayName} <${email}>`;
+      return email;
     }
   }
 
   const embeddedEmail = cleaned.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i);
   if (embeddedEmail && emailPattern.test(embeddedEmail[0])) {
-    const email = embeddedEmail[0];
-    const displayName =
-      stripWrappingQuotes(cleaned.replace(email, "").replace(/[<>]/g, "")) || "B-Town Entertainment";
-    return `${displayName} <${email}>`;
+    return embeddedEmail[0];
   }
 
   return "";
