@@ -19,9 +19,45 @@ type QuotePayload = {
 };
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const fallbackFromEmail = "B-Town Entertainment <hello@btownent.ca>";
 
 function asText(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
+}
+
+function stripWrappingQuotes(value: string) {
+  return value.replace(/^["'`]+|["'`]+$/g, "").trim();
+}
+
+function normalizeFromEmail(value: string) {
+  const cleaned = stripWrappingQuotes(value);
+
+  if (!cleaned) {
+    return "";
+  }
+
+  if (emailPattern.test(cleaned)) {
+    return cleaned;
+  }
+
+  const displayMatch = cleaned.match(/^(.+?)\s*<([^<>]+)>$/);
+  if (displayMatch) {
+    const displayName = stripWrappingQuotes(displayMatch[1]) || "B-Town Entertainment";
+    const email = displayMatch[2].trim();
+    if (emailPattern.test(email)) {
+      return `${displayName} <${email}>`;
+    }
+  }
+
+  const embeddedEmail = cleaned.match(/[^\s<>@]+@[^\s<>@]+\.[^\s<>@]+/);
+  if (embeddedEmail) {
+    const email = embeddedEmail[0];
+    const displayName =
+      stripWrappingQuotes(cleaned.replace(email, "").replace(/[<>]/g, "")) || "B-Town Entertainment";
+    return `${displayName} <${email}>`;
+  }
+
+  return "";
 }
 
 function escapeHtml(value: string) {
@@ -41,13 +77,13 @@ function row(label: string, value: string | undefined) {
 export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.INQUIRY_TO_EMAIL || "";
-  const fromEmail = process.env.INQUIRY_FROM_EMAIL || "";
+  const fromEmail = normalizeFromEmail(process.env.INQUIRY_FROM_EMAIL || "") || fallbackFromEmail;
   const recipients = toEmail
     .split(",")
     .map((email) => email.trim())
     .filter(Boolean);
 
-  if (!apiKey || recipients.length === 0 || !fromEmail.trim()) {
+  if (!apiKey || recipients.length === 0) {
     return NextResponse.json(
       { ok: false, error: "Email service is not configured." },
       { status: 500 }
