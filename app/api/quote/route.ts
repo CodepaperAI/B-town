@@ -49,8 +49,8 @@ function normalizeFromEmail(value: string) {
     }
   }
 
-  const embeddedEmail = cleaned.match(/[^\s<>@]+@[^\s<>@]+\.[^\s<>@]+/);
-  if (embeddedEmail) {
+  const embeddedEmail = cleaned.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i);
+  if (embeddedEmail && emailPattern.test(embeddedEmail[0])) {
     const email = embeddedEmail[0];
     const displayName =
       stripWrappingQuotes(cleaned.replace(email, "").replace(/[<>]/g, "")) || "B-Town Entertainment";
@@ -58,6 +58,13 @@ function normalizeFromEmail(value: string) {
   }
 
   return "";
+}
+
+function isValidFromEmail(value: string) {
+  const cleaned = stripWrappingQuotes(value);
+  const displayMatch = cleaned.match(/^.+?\s*<([^<>]+)>$/);
+  const email = displayMatch ? displayMatch[1].trim() : cleaned;
+  return emailPattern.test(email);
 }
 
 function escapeHtml(value: string) {
@@ -77,7 +84,8 @@ function row(label: string, value: string | undefined) {
 export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.INQUIRY_TO_EMAIL || "";
-  const fromEmail = normalizeFromEmail(process.env.INQUIRY_FROM_EMAIL || "") || fallbackFromEmail;
+  const configuredFromEmail = normalizeFromEmail(process.env.INQUIRY_FROM_EMAIL || "");
+  const fromEmail = isValidFromEmail(configuredFromEmail) ? configuredFromEmail : fallbackFromEmail;
   const recipients = toEmail
     .split(",")
     .map((email) => email.trim())
